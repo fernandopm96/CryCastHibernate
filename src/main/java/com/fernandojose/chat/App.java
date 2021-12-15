@@ -1,20 +1,20 @@
 package com.fernandojose.chat;
 
+import com.fernandojose.chat.controller.Controller;
+import com.fernandojose.chat.utils.CreateExampleDatabase;
 import com.fernandojose.chat.utils.HibernateUtil;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
+
 
 public class App {
     public static void main(String[] args) {
 
-        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-        Session session = sessionFactory.openSession();
-        session.beginTransaction();
+        HibernateUtil.getSessionFactory();
+        // Si no hay datos cuando se ejecuta, se inicializa una base de datos de prueba.
+        if(Controller.allUsers().isEmpty()){
+            CreateExampleDatabase.initializeDatabase();
+        }
 
-        System.out.println("Transacción");
-
-        session.getTransaction().commit();
-        session.close();
+        HibernateUtil.closeSession();
         HibernateUtil.closeSessionFactory();
     }
 }
