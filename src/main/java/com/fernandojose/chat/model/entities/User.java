@@ -16,8 +16,11 @@ public class User {
     @Column
     private Integer id;
 
-    @Column
+    @Column(name = "nombre")
     private String name;
+
+    @Column(name = "contraseña")
+    private String password;
 
     // TODO AÑADIR EMBEDDED Y PASSWORD
 
@@ -31,12 +34,14 @@ public class User {
 
     }
 
-    public User(String name) {
+    public User(String name, String password) {
         this.name = name;
+        this.password = password;
     }
 
-    public User(String name, List<Message> messages, List<Group> groups) {
+    public User(String name, String password, List<Message> messages, List<Group> groups) {
         this.name = name;
+        this.password = password;
         this.messages = messages;
         this.groups = groups;
     }
