@@ -1,5 +1,6 @@
 package com.fernandojose.chat.view;
 
+import com.fernandojose.chat.controller.Controller;
 import com.fernandojose.chat.model.entities.User;
 
 import javax.swing.*;
@@ -20,7 +21,7 @@ public class Login {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try{
-                    User user = new User();//Controller.validateLogin(tfUsername,pfPass);
+                    User user = Controller.validateLogin(tfUsername.getText(), pfPass.getText());
                     JFrame frame = new JFrame("CRYCAST 0.1");
                     frame.setContentPane(new MainView(user).getMainPanel());
                     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

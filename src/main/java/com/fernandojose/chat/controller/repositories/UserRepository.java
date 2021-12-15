@@ -49,7 +49,7 @@ public class UserRepository {
 
         session = HibernateUtil.getCurrentSession();
 
-        Query query = session.createQuery("SELECT u.id FROM User u WHERE u.name = :name AND u.password = :password");
+        Query query = session.createQuery("FROM User u WHERE u.name = :name AND u.password = :password");
         query.setParameter("name", name);
         query.setParameter("password", password);
 

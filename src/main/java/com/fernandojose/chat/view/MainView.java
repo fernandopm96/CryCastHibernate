@@ -1,6 +1,8 @@
 package com.fernandojose.chat.view;
 
+import com.fernandojose.chat.controller.Controller;
 import com.fernandojose.chat.model.entities.Group;
+import com.fernandojose.chat.model.entities.Message;
 import com.fernandojose.chat.model.entities.User;
 
 import javax.swing.*;
@@ -23,18 +25,20 @@ public class MainView {
     private JList lChats;
     private JList lMensajes;
     private User user;
+    private Group grupoActual;
     private MainView self;
 
     public MainView(User user) {
         this.user = user;
-        //Controller.setCurrentUsert(user);
+        System.out.println(user);
+        Controller.setCurrentUser(user.getName());
         updateGroups();
         self = this;
 
         bInput.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //Controller.sendMessage(tfInput.getText());
+                Controller.sendMessage(tfInput.getText());
             }
         });
 
@@ -42,8 +46,8 @@ public class MainView {
         lChats.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
-                Group grupoActual = (Group)(lMensajes.getSelectedValue());
-                //Controller.setCurrentGroup(grupoActual);
+                grupoActual = (Group)(lChats.getSelectedValue());
+                Controller.setCurrentGroup(grupoActual.getName());
                 lMensajes.setListData(new Vector(grupoActual.getMessages()));
             }
         });
@@ -53,8 +57,8 @@ public class MainView {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(!tfInput.getText().isEmpty()){
-                    //Controller.sendMessage(tfInput.getText());
-                    //Controller.setCurrentGroup(grupoActual);
+                    Controller.sendMessage(tfInput.getText());
+                    Controller.setCurrentGroup(grupoActual.getName());
                 }
             }
         });

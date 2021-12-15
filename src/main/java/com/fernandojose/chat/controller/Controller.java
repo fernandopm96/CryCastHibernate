@@ -1,5 +1,6 @@
 package com.fernandojose.chat.controller;
 
+import com.fernandojose.chat.controller.repositories.MessageRepository;
 import com.fernandojose.chat.controller.services.GroupService;
 import com.fernandojose.chat.controller.services.MessageService;
 import com.fernandojose.chat.controller.services.UserService;
@@ -7,6 +8,7 @@ import com.fernandojose.chat.exceptions.GroupCreationException;
 import com.fernandojose.chat.exceptions.LoginException;
 import com.fernandojose.chat.exceptions.RegisterException;
 import com.fernandojose.chat.model.entities.Group;
+import com.fernandojose.chat.model.entities.Message;
 import com.fernandojose.chat.model.entities.User;
 
 import java.util.List;
@@ -37,6 +39,10 @@ public class Controller {
     }
     public static void newUser(String name, String password, String password2) throws RegisterException {
         UserService.newUser(name, password, password2);
+    }
+
+    public static List<Message> messagesGroupUser(Integer id_group, Integer id_user){
+        return MessageService.messagesGroupUser(id_group, id_user);
     }
 
     public static List<User> allUsers(){
