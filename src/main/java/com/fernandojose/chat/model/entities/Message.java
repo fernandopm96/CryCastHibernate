@@ -29,9 +29,10 @@ public class Message {
         this.text = text;
     }
 
-    public Message(String text, User user) {
+    public Message(String text, User user, Group group) {
         this.text = text;
         this.user = user;
+        this.group = group;
     }
 
 

@@ -1,5 +1,6 @@
 package com.fernandojose.chat.controller.repositories;
 
+import com.fernandojose.chat.exceptions.LoginException;
 import com.fernandojose.chat.model.entities.User;
 import com.fernandojose.chat.utils.HibernateUtil;
 import org.hibernate.Session;
@@ -7,57 +8,59 @@ import org.hibernate.query.Query;
 
 import java.util.List;
 
-public class UserRepository implements IRepository<User> {
+public class UserRepository {
 
-    private Session session;
+    private static Session session;
 
-    public UserRepository(){
-        session = HibernateUtil.getSessionFactory().openSession();
-    }
-
-    public List<User> getAllUsers(){
-        CreateSession();
+    public static List<User> getAllUsers(){
+        session = HibernateUtil.getCurrentSession();
         Query<User> query = session.createQuery("FROM User");
         List<User> users = query.list();
-        CloseSession();
         return users;
     }
 
-    public void newUser(User user){
-        CreateSession();
+    public static User newUser(User user){
+        session = HibernateUtil.getCurrentSession();
         session.beginTransaction();
         session.save(user);
         session.getTransaction().commit();
-        System.out.println("Usuario registrado. ");
-        CloseSession();
+        return user;
     }
 
-    public boolean nameAlreadyExist(String name){
-        boolean exists;
+    public static boolean nameAlreadyExist(String name){
 
-        CreateSession();
+        boolean exists;
+        session = HibernateUtil.getCurrentSession();
         Query query = session.createQuery("SELECT u.id FROM User u WHERE u.name = :name");
         query.setParameter("name", name);
         Integer id = (Integer) query.uniqueResult();
+
         if(id == null){
             exists = false;
         } else {
             exists = true;
         }
-        CloseSession();
         return exists;
     }
 
-    public void CreateSession(){
-        if(session == null){
-            session = HibernateUtil.getSessionFactory().openSession();
-        }
-    }
-    public void CloseSession(){
-        if(session != null){
-            session.close();
-            session = null;
-        }
+    public static User loadUserWithPasswordAndName(String name, String password) throws LoginException {
+
+        User user = null;
+
+        session = HibernateUtil.getCurrentSession();
+
+        Query query = session.createQuery("SELECT u.id FROM User u WHERE u.name = :name AND u.password = :password");
+        query.setParameter("name", name);
+        query.setParameter("password", password);
+
+        return (User)query.uniqueResult();
+
     }
 
+    public static User loadUserByName(String name) {
+        session = HibernateUtil.getCurrentSession();
+        Query<User> query = session.createQuery("FROM User u WHERE u.name = :name");
+        query.setParameter("name", name);
+        return (User)query.uniqueResult();
+    }
 }
