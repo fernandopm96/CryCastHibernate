@@ -2,10 +2,13 @@ package com.fernandojose.chat.view;
 
 import com.fernandojose.chat.controller.Controller;
 import com.fernandojose.chat.model.entities.User;
+import com.fernandojose.chat.utils.WindowUtils;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import static com.fernandojose.chat.utils.WindowUtils.centerWindow;
 
 public class RegisterForm {
     private JPanel pRegisterForm;
@@ -23,10 +26,12 @@ public class RegisterForm {
         cancelarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame frame = new JFrame();
+                JFrame frame = new JFrame("CryCast 0.1 - Inicio de sesión");
+                WindowUtils.setIcon(frame);
                 frame.setContentPane(new Login().getMainPanel());
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.pack();
+                centerWindow(frame);
                 frame.setResizable(false);
                 frame.setVisible(true);
                 SwingUtilities.getWindowAncestor(pRegisterForm).dispose();
@@ -39,9 +44,11 @@ public class RegisterForm {
                     User user = Controller.newUser(tfName.getText(),pfPass1.getText(),pfpass2.getText());
                     Controller.setCurrentUser(user.getName());
                     JFrame frame = new JFrame("CRYCAST 0.1");
+                    WindowUtils.setIcon(frame);
                     frame.setContentPane(new MainView().getMainPanel());
                     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                     frame.pack();
+                    centerWindow(frame);
                     frame.setResizable(false);
                     frame.setVisible(true);
                     SwingUtilities.getWindowAncestor(getMainPanel()).dispose();

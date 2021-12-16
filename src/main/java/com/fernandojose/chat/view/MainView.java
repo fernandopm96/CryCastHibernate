@@ -6,6 +6,7 @@ import com.fernandojose.chat.controller.services.MessageService;
 import com.fernandojose.chat.model.entities.Group;
 import com.fernandojose.chat.model.entities.Message;
 import com.fernandojose.chat.model.entities.User;
+import com.fernandojose.chat.utils.WindowUtils;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -13,6 +14,8 @@ import javax.swing.event.ListSelectionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Vector;
+
+import static com.fernandojose.chat.utils.WindowUtils.centerWindow;
 
 public class MainView {
     private JPanel pGeneral;
@@ -30,7 +33,7 @@ public class MainView {
     private MainView self;
 
     public MainView() {
-
+        tfInput.setEnabled(false);
         Controller.updateUser();
         this.user = Controller.getCurrentUser();
         System.out.println(user);
@@ -40,6 +43,7 @@ public class MainView {
         lChats.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
+                tfInput.setEnabled(true);
                 Group group = (Group) lChats.getSelectedValue();
                 Controller.setCurrentGroup(group.getName());
                 updateMessages();
@@ -64,9 +68,11 @@ public class MainView {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JFrame frame = new JFrame("Crear Grupo");
+                WindowUtils.setIcon(frame);
                 frame.setContentPane(new GroupCreation().getMainPanel());
                 frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 frame.pack();
+                centerWindow(frame);
                 frame.setResizable(false);
                 frame.setVisible(true);
                 SwingUtilities.getWindowAncestor(pGeneral).dispose();

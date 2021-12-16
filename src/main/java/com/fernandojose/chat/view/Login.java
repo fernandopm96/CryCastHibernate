@@ -2,11 +2,14 @@ package com.fernandojose.chat.view;
 
 import com.fernandojose.chat.controller.Controller;
 import com.fernandojose.chat.model.entities.User;
+import com.fernandojose.chat.utils.WindowUtils;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
+
+import static com.fernandojose.chat.utils.WindowUtils.centerWindow;
 
 public class Login {
     private JPanel jpLogin;
@@ -24,9 +27,11 @@ public class Login {
                     User user = Controller.validateLogin(tfUsername.getText(), pfPass.getText());
                     Controller.setCurrentUser(user.getName());
                     JFrame frame = new JFrame("CRYCAST 0.1");
+                    WindowUtils.setIcon(frame);
                     frame.setContentPane(new MainView().getMainPanel());
                     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                     frame.pack();
+                    centerWindow(frame);
                     frame.setResizable(false);
                     frame.setVisible(true);
                     SwingUtilities.getWindowAncestor(jpLogin).dispose();
@@ -37,9 +42,11 @@ public class Login {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JFrame frame = new JFrame("CRYCAST 0.1");
+                WindowUtils.setIcon(frame);
                 frame.setContentPane(new RegisterForm().getMainPanel());
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.pack();
+                centerWindow(frame);
                 frame.setResizable(false);
                 frame.setVisible(true);
                 SwingUtilities.getWindowAncestor(jpLogin).dispose();

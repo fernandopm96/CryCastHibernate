@@ -50,50 +50,7 @@
                     <properties>
                       <enabled value="true"/>
                       <foreground color="-12828863"/>
-                      <model>
-                        <item value="aaaaaaaaaa"/>
-                        <item value="aaaaaaaaaa"/>
-                        <item value="aaaaaaaaaa"/>
-                        <item value="aaaaaaaaaa"/>
-                        <item value="aaaaaaaaaa"/>
-                        <item value="aaaaaaaaaa"/>
-                        <item value="aaaaaaaaaa"/>
-                        <item value="aaaaaaaaaa"/>
-                        <item value="aaaaaaaaaa"/>
-                        <item value="aaaaaaaaaa"/>
-                        <item value="aaaaaaaaaa"/>
-                        <item value="aaaaaaaaaa"/>
-                        <item value="aaaaaaaaaa"/>
-                        <item value="aaaaaaaaaa"/>
-                        <item value="aaaaaaaaaa"/>
-                        <item value="aaaaaaaaaa"/>
-                        <item value="aaaaaaaaaa"/>
-                        <item value="aaaaaaaaaa"/>
-                        <item value="aaaaaaaaaa"/>
-                        <item value="aaaaaaaaaa"/>
-                        <item value="aaaaaaaaaa"/>
-                        <item value="aaaaaaaaaa"/>
-                        <item value="aaaaaaaaaa"/>
-                        <item value="aaaaaaaaaa"/>
-                        <item value="aaaaaaaaaa"/>
-                        <item value="aaaaaaaaaa"/>
-                        <item value="aaaaaaaaaa"/>
-                        <item value="aaaaaaaaaa"/>
-                        <item value="aaaaaaaaaa"/>
-                        <item value="aaaaaaaaaa"/>
-                        <item value="aaaaaaaaaa"/>
-                        <item value="aaaaaaaaaa"/>
-                        <item value="aaaaaaaaaa"/>
-                        <item value="aaaaaaaaaa"/>
-                        <item value="aaaaaaaaaa"/>
-                        <item value="aaaaaaaaaa"/>
-                        <item value="aaaaaaaaaa"/>
-                        <item value="aaaaaaaaaa"/>
-                        <item value="aaaaaaaaaa"/>
-                        <item value="aaaaaaaaaa"/>
-                        <item value="aaaaaaaaaa"/>
-                        <item value="aaaaaaaaaa"/>
-                      </model>
+                      <model/>
                       <selectionMode value="0"/>
                     </properties>
                   </component>
@@ -115,9 +72,9 @@
               <splitpane position="right"/>
             </constraints>
             <properties/>
-            <border type="bevel-raised" title="Chat name"/>
+            <border type="none" title="Chat"/>
             <children>
-              <grid id="53b16" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+              <grid id="53b16" layout-manager="GridBagLayout">
                 <constraints>
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
                     <preferred-size width="-1" height="550"/>
@@ -126,94 +83,25 @@
                 <properties>
                   <autoscrolls value="false"/>
                 </properties>
-                <border type="none"/>
+                <border type="none" title=""/>
                 <children>
-                  <scrollpane id="e1ecc">
-                    <constraints/>
+                  <component id="68a7d" class="javax.swing.JList" binding="lMensajes">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                      <gridbag weightx="0.0" weighty="0.0"/>
+                    </constraints>
                     <properties>
-                      <minimumSize width="-1" height="-1"/>
+                      <enabled value="true"/>
+                      <maximumSize width="450" height="520"/>
+                      <minimumSize width="450" height="500"/>
+                      <model>
+                        <item value="&#9;&#9;"/>
+                        <item value=""/>
+                        <item value="&#9;&#9;Selecciona un chat para comenzar o crea uno usando el botón Crear Grupo."/>
+                      </model>
                       <preferredSize width="450" height="520"/>
-                      <verticalScrollBarPolicy value="20"/>
                     </properties>
-                    <border type="none"/>
-                    <children>
-                      <component id="68a7d" class="javax.swing.JList" binding="lMensajes">
-                        <constraints/>
-                        <properties>
-                          <enabled value="true"/>
-                          <maximumSize width="-1" height="-1"/>
-                          <minimumSize width="-1" height="-1"/>
-                          <model>
-                            <item value="aaaaaaaa"/>
-                            <item value="aaaaaaaa"/>
-                            <item value="aaaaaaaa"/>
-                            <item value="aaaaaaaa"/>
-                            <item value="aaaaaaaa"/>
-                            <item value="aaaaaaaa"/>
-                            <item value="aaaaaaaa"/>
-                            <item value="aaaaaaaa"/>
-                            <item value="aaaaaaaa"/>
-                            <item value="aaaaaaaa"/>
-                            <item value="aaaaaaaa"/>
-                            <item value="aaaaaaaa"/>
-                            <item value="aaaaaaaa"/>
-                            <item value="aaaaaaaa"/>
-                            <item value="aaaaaaaa"/>
-                            <item value="aaaaaaaa"/>
-                            <item value="aaaaaaaa"/>
-                            <item value="aaaaaaaa"/>
-                            <item value="aaaaaaaa"/>
-                            <item value="aaaaaaaa"/>
-                            <item value="aaaaaaaa"/>
-                            <item value="aaaaaaaa"/>
-                            <item value="aaaaaaaa"/>
-                            <item value="aaaaaaaa"/>
-                            <item value="aaaaaaaa"/>
-                            <item value="aaaaaaaa"/>
-                            <item value="aaaaaaaa"/>
-                            <item value="aaaaaaaa"/>
-                            <item value="aaaaaaaa"/>
-                            <item value="aaaaaaaa"/>
-                            <item value="aaaaaaaa"/>
-                            <item value="aaaaaaaa"/>
-                            <item value="aaaaaaaa"/>
-                            <item value="aaaaaaaa"/>
-                            <item value="aaaaaaaa"/>
-                            <item value="aaaaaaaa"/>
-                            <item value="aaaaaaaa"/>
-                            <item value="aaaaaaaa"/>
-                            <item value="aaaaaaaa"/>
-                            <item value="aaaaaaaa"/>
-                            <item value="aaaaaaaa"/>
-                            <item value="aaaaaaaa"/>
-                            <item value="aaaaaaaa"/>
-                            <item value="aaaaaaaa"/>
-                            <item value="aaaaaaaa"/>
-                            <item value="aaaaaaaa"/>
-                            <item value="aaaaaaaa"/>
-                            <item value="aaaaaaaa"/>
-                            <item value="aaaaaaaa"/>
-                            <item value="aaaaaaaa"/>
-                            <item value="aaaaaaaa"/>
-                            <item value="aaaaaaaa"/>
-                            <item value="aaaaaaaa"/>
-                            <item value="aaaaaaaa"/>
-                            <item value="aaaaaaaa"/>
-                            <item value="aaaaaaaa"/>
-                            <item value="aaaaaaaa"/>
-                            <item value="aaaaaaaa"/>
-                            <item value="aaaaaaaa"/>
-                            <item value="aaaaaaaa"/>
-                            <item value="aaaaaaaa"/>
-                            <item value="aaaaaaaa"/>
-                            <item value="aaaaaaaa"/>
-                            <item value="aaaaaaaa"/>
-                          </model>
-                          <preferredSize width="440" height="450"/>
-                        </properties>
-                      </component>
-                    </children>
-                  </scrollpane>
+                  </component>
                 </children>
               </grid>
               <grid id="3c921" binding="pInput" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="0">
