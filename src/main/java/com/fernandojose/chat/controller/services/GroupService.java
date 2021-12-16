@@ -10,8 +10,12 @@ import java.util.List;
 import java.util.Vector;
 import java.util.stream.Collectors;
 
+// Clase encargada de interactuar con el repositorio y el controlador.
 public class GroupService {
 
+    /* Creación de grupo. Comprueba que el nombre no exista ya en la base de datos, lanzando una excepción en caso de que ya exista uno.
+    Posteriormente, mapea los nombres de usuarios recibidos en objetos usuario, para despúes crear el objeto Group y llamar al repositorio
+    para su registro.*/
     public static void newGroup(String name, List<String> namesUsers) throws GroupCreationException {
 
         if(loadGroupByName(name) != null){
@@ -23,17 +27,15 @@ public class GroupService {
 
     }
 
+    // Llama al repositorio para obtener los grupos de un usuario dado.
     public static Vector<Group> groupsByUser(User currentUser){
         return GroupRepository.groupsByUser(currentUser);
     }
 
+    // A través del repositorio, obtiene un grupo a partir de su nombre.
     public static Group loadGroupByName(String name) {
         return GroupRepository.loadGroupByName(name);
     }
 
-    /*public static List<Group> groupsUser(String name){
-        User user = userRepository.loadUserByName(name);
-        return repository.groupsUser(user);
-    }*/
 
 }

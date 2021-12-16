@@ -33,6 +33,18 @@ public class Login {
                 }catch(Exception ex){JOptionPane.showMessageDialog(jpLogin.getParent(),ex.getMessage(),"login error",JOptionPane.ERROR_MESSAGE);}
             }
         });
+        registerButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFrame frame = new JFrame("CRYCAST 0.1");
+                frame.setContentPane(new RegisterForm().getMainPanel());
+                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                frame.pack();
+                frame.setResizable(false);
+                frame.setVisible(true);
+                SwingUtilities.getWindowAncestor(jpLogin).dispose();
+            }
+        });
     }
 
     public JPanel getMainPanel(){

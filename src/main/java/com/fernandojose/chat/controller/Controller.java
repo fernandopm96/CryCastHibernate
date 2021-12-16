@@ -1,7 +1,5 @@
 package com.fernandojose.chat.controller;
 
-import com.fernandojose.chat.controller.repositories.GroupRepository;
-import com.fernandojose.chat.controller.repositories.UserRepository;
 import com.fernandojose.chat.controller.services.GroupService;
 import com.fernandojose.chat.controller.services.MessageService;
 import com.fernandojose.chat.controller.services.UserService;
@@ -17,7 +15,9 @@ import java.util.Vector;
 
 public class Controller {
 
+    // Usuario que inicia sesión
     private static User currentUser;
+    // Grupo en el que se encuentra el usuario en cada momento.
     private static Group currentGroup;
 
     // Métodos para establecer el usuario y grupo actual.
@@ -25,34 +25,27 @@ public class Controller {
         updateUser();
         return currentUser;
     }
-
-    public static void updateUser() {
-        String name = currentUser.getName();
-        currentUser = UserService.loadUserByName(name);
-        //UserService.updateUser(currentUser);
-    }
-
     public static void setCurrentUser(String name) {
         currentUser = UserService.loadUserByName(name);
     }
-
     public static Group getCurrentGroup() {
         return currentGroup;
     }
-
     public static void setCurrentGroup(String name) {
         currentGroup = GroupService.loadGroupByName(name);
     }
 
+    /* LOGIN Y REGISTRO*/
     // Login
     public static User validateLogin(String name, String password) throws LoginException {
         return UserService.validateLogin(name, password);
     }
     // Registro
-    public static void newUser(String name, String password, String password2) throws RegisterException {
-        UserService.newUser(name, password, password2);
+    public static User newUser(String name, String password, String password2) throws RegisterException {
+        return UserService.newUser(name, password, password2);
     }
 
+    /* USER */
     // Listado de todos los nombres de los usuarios
     public static List<String> allNamesUsers(){
         List<String> names = UserService.getNamesUsers();
@@ -60,10 +53,16 @@ public class Controller {
         return names;
     }
     // Listado de todos los usuarios
-    public static List<User> allUsers(){
+    public static Vector<User> allUsers(){
         return UserService.allUsers();
     }
+    // Actualiza los datos de un usuario cargándolo desde la base de datos.
+    public static void updateUser() {
+        String name = currentUser.getName();
+        currentUser = UserService.loadUserByName(name);
+    }
 
+    /* GROUP */
     // Creación de grupo
     public static void newGroup(String name, List<String> namesUsers) throws GroupCreationException {
         namesUsers.add(currentUser.getName());
@@ -74,6 +73,7 @@ public class Controller {
         return GroupService.groupsByUser(currentUser);
     }
 
+    /* MESSAGE */
     // Enviar mensaje
     public static void sendMessage(String texto){
         MessageService.sendMessage(texto, currentUser, currentGroup);
@@ -81,6 +81,8 @@ public class Controller {
 
     // Actualizar mensajes de grupo
     public static Vector<Message> messagesGroupUser(Integer id_group){
-        return MessageService.messagesGroupUser(id_group);
+        return MessageService.messagesGroup(id_group);
     }
+
+
 }

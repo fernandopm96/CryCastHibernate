@@ -1,6 +1,8 @@
 package com.fernandojose.chat.utils;
 
 import com.fernandojose.chat.controller.Controller;
+import com.fernandojose.chat.controller.services.GroupService;
+import com.fernandojose.chat.controller.services.UserService;
 import com.fernandojose.chat.exceptions.GroupCreationException;
 import com.fernandojose.chat.exceptions.RegisterException;
 import com.fernandojose.chat.model.entities.User;
@@ -24,7 +26,7 @@ public class CreateExampleDatabase {
     private static void setUsers() {
         usersNames.forEach(name -> {
             try {
-                Controller.newUser(name, password, password);
+                UserService.newUser(name, password, password);
             } catch (RegisterException e) {
                 e.printStackTrace();
             }
@@ -35,10 +37,10 @@ public class CreateExampleDatabase {
         groupsNames.forEach(name -> {
             try{
                 if(name.equals("CRYSEC")){
-                    Controller.newGroup(name, List.of(usersNames.get(0),usersNames.get(1), usersNames.get(2)));
+                    GroupService.newGroup(name, List.of(usersNames.get(0),usersNames.get(1), usersNames.get(2)));
                 }
                 else{
-                    Controller.newGroup(name, usersNames);
+                    GroupService.newGroup(name, usersNames);
                 }
             } catch(GroupCreationException e){
                 e.printStackTrace();

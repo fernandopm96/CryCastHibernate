@@ -4,6 +4,7 @@ import com.fernandojose.chat.controller.Controller;
 import com.fernandojose.chat.controller.repositories.GroupRepository;
 import com.fernandojose.chat.controller.services.MessageService;
 import com.fernandojose.chat.model.entities.Group;
+import com.fernandojose.chat.model.entities.Message;
 import com.fernandojose.chat.model.entities.User;
 
 import javax.swing.*;
@@ -39,6 +40,8 @@ public class MainView {
         lChats.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
+                Group group = (Group) lChats.getSelectedValue();
+                Controller.setCurrentGroup(group.getName());
                 updateMessages();
             }
         });
@@ -78,7 +81,14 @@ public class MainView {
     public void updateGroups() {
         lChats.setListData(Controller.groupsByUser(Controller.getCurrentUser()));
     }
+
     public void updateMessages(){
-        lMensajes.setListData(Controller.messagesGroupUser(((Group)(lChats.getSelectedValue())).getId()));
+        Vector<Message> messages = Controller.messagesGroupUser(((Group)(lChats.getSelectedValue())).getId());
+        if(!messages.isEmpty()){
+            messages.forEach(System.out::println);
+        } else {
+            System.out.println("No hay mensajes. ");
+        }
+        lMensajes.setListData(messages);
     }
 }
