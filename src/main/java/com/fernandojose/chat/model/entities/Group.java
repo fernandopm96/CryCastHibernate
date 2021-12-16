@@ -19,12 +19,13 @@ public class Group {
     @OneToMany(mappedBy = "group")
     private List<Message> messages = new ArrayList<Message>();
 
-    @ManyToMany(cascade = CascadeType.ALL)
+
     @JoinTable(
             name = "grupos_usuarios",
             joinColumns = @JoinColumn(name = "id_grupo"),
             inverseJoinColumns = @JoinColumn(name = "id_usuario")
     )
+    @ManyToMany(cascade = CascadeType.ALL)
     private List<User> users = new ArrayList<User>();
 
     public Group(){

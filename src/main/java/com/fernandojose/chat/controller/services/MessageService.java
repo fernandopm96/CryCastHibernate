@@ -6,12 +6,12 @@ import com.fernandojose.chat.model.entities.Message;
 import com.fernandojose.chat.model.entities.User;
 
 import java.util.List;
-import java.util.Scanner;
+import java.util.Vector;
 
 public class MessageService {
 
-    public static List<Message> messagesGroupUser(Integer id_group, Integer id_user){
-        return MessageRepository.messagesGroupUser(id_group, id_user);
+    public static Vector<Message> messagesGroupUser(Integer id_group){
+        return MessageRepository.messagesGroupUser(id_group);
     }
 
     public static void sendMessage(String texto, User user, Group group){

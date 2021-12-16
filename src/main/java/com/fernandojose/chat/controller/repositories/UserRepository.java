@@ -7,15 +7,16 @@ import org.hibernate.Session;
 import org.hibernate.query.Query;
 
 import java.util.List;
+import java.util.Vector;
 
 public class UserRepository {
 
     private static Session session;
 
-    public static List<User> getAllUsers(){
+    public static Vector<User> getAllUsers(){
         session = HibernateUtil.getCurrentSession();
         Query<User> query = session.createQuery("FROM User");
-        List<User> users = query.list();
+        Vector<User> users = new Vector<User>(query.getResultList());
         return users;
     }
 
@@ -62,5 +63,12 @@ public class UserRepository {
         Query<User> query = session.createQuery("FROM User u WHERE u.name = :name");
         query.setParameter("name", name);
         return (User)query.uniqueResult();
+    }
+
+    public static void updateUser(User currentUser) {
+        session = HibernateUtil.getCurrentSession();
+        session.beginTransaction();
+        currentUser = (User)session.merge(currentUser);
+        session.getTransaction().commit();
     }
 }

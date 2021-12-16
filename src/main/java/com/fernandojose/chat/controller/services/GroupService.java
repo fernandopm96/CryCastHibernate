@@ -7,6 +7,7 @@ import com.fernandojose.chat.model.entities.Group;
 import com.fernandojose.chat.model.entities.User;
 
 import java.util.List;
+import java.util.Vector;
 import java.util.stream.Collectors;
 
 public class GroupService {
@@ -20,6 +21,10 @@ public class GroupService {
         Group group = new Group(name, users);
         GroupRepository.newGroup(group);
 
+    }
+
+    public static Vector<Group> groupsByUser(User currentUser){
+        return GroupRepository.groupsByUser(currentUser);
     }
 
     public static Group loadGroupByName(String name) {

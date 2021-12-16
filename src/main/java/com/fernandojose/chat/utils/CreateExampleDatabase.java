@@ -12,7 +12,7 @@ public class CreateExampleDatabase {
 
     private static List<String> usersNames = List.of("Ricardo", "Fernando", "Jose" , "Blas", "Rubén", "Juan Elías", "Manu");
     private static List<String> messages = List.of("Buenas tardes", "Ieeeee", "Como vais", "Habéis terminado lo de Ricardo?", "Que va", "Hola buenas noches", ":)", ":(", "Jajajajja");
-    private static List<String> groupsNames = List.of("2ª DAM", "Acceso a datos", "CRYSEC");
+    private static List<String> groupsNames = List.of("2 DAM", "Acceso a datos", "CRYSEC");
     private static String password = ".Accesoadatos2021";
 
     public static void initializeDatabase(){

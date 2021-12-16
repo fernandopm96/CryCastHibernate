@@ -58,9 +58,6 @@ public class Message {
 
     @Override
     public String toString() {
-        return "Message{" +
-                "id=" + id +
-                ", text='" + text + '\'' +
-                '}';
+        return "\n " +this.user.getName() + ": " + this.text;
     }
 }

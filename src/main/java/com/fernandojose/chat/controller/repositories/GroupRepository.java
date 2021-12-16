@@ -6,7 +6,7 @@ import com.fernandojose.chat.utils.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
-import java.util.List;
+import java.util.Vector;
 
 public class GroupRepository {
 
@@ -26,10 +26,11 @@ public class GroupRepository {
         return (Group)query.uniqueResult();
     }
 
-    /*public List<Group> groupsUser(User user) {
+    public static Vector<Group> groupsByUser(User currentUser) {
         session = HibernateUtil.getCurrentSession();
-        session.beginTransaction();
-        user = session.load(User.class, user.getId());
-        return user.getGroups();
-    }*/
+        Query<Group> userGroups = session.createQuery("SELECT u.groups FROM User u WHERE u.id = :currentUserId ");
+        userGroups.setParameter("currentUserId", currentUser.getId());
+        return new Vector<Group>(userGroups.list());
+    }
+
 }

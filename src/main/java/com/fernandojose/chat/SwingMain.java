@@ -21,6 +21,5 @@ public class SwingMain {
         frame.setResizable(false);
         frame.setVisible(true);
 
-
     }
 }

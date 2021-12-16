@@ -6,6 +6,7 @@ import com.fernandojose.chat.model.entities.Message;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
 @Entity
 @Table(name = "usuarios")
@@ -25,10 +26,10 @@ public class User {
     // TODO AÑADIR EMBEDDED Y PASSWORD
 
     @OneToMany(mappedBy = "user")
-    private List<Message> messages = new ArrayList<Message>();
+    private List<Message> messages = new Vector<Message>();
 
-    @ManyToMany(mappedBy = "users", cascade = CascadeType.ALL)
-    private List<Group> groups = new ArrayList<Group>();
+    @ManyToMany(mappedBy = "users")
+    private List<Group> groups = new Vector<Group>();
 
     public User(){
 
@@ -85,9 +86,6 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
+        return name;
     }
 }

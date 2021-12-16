@@ -6,21 +6,16 @@ import com.fernandojose.chat.exceptions.RegisterException;
 import com.fernandojose.chat.model.entities.User;
 
 import java.util.List;
-import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class UserService {
 
-    public static List<User> getAllUsers(){
-        return UserRepository.getAllUsers();
+    public static List<String> getNamesUsers(){
+        return UserRepository.getAllUsers().stream().map(u -> u.getName()).collect(Collectors.toList());
     }
 
-    public static void showAllUsers(){
-        List<User> users = UserRepository.getAllUsers();
-        if(users.isEmpty()){
-            System.out.println("No hay usuarios registrados. ");
-        } else {
-            users.forEach(user -> System.out.println(user));
-        }
+    public static List<User> allUsers(){
+        return UserRepository.getAllUsers();
     }
 
     public static User newUser(String name, String password, String password2) throws RegisterException {
@@ -55,5 +50,9 @@ public class UserService {
 
     public static User loadUserByName(String name) {
         return UserRepository.loadUserByName(name);
+    }
+
+    public static void updateUser(User currentUser) {
+        UserRepository.updateUser(currentUser);
     }
 }

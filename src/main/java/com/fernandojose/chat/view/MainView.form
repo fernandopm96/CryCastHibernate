@@ -47,13 +47,8 @@
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="2" anchor="0" fill="3" indent="1" use-parent-layout="false"/>
                 </constraints>
                 <properties>
-                  <enabled value="false"/>
-                  <model>
-                    <item value="Chat1"/>
-                    <item value="Chat2"/>
-                    <item value="Chat3"/>
-                    <item value="Chat4"/>
-                  </model>
+                  <enabled value="true"/>
+                  <model/>
                   <selectionMode value="0"/>
                 </properties>
               </component>
@@ -78,11 +73,7 @@
                     <constraints/>
                     <properties>
                       <enabled value="false"/>
-                      <model>
-                        <item value="Jose: asdf"/>
-                        <item value="Fernando: regsdfg"/>
-                        <item value="Pepe: asdgsdg"/>
-                      </model>
+                      <model/>
                       <preferredSize width="300" height="440"/>
                       <selectionMode value="0"/>
                     </properties>

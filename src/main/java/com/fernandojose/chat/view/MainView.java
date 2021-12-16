@@ -1,8 +1,9 @@
 package com.fernandojose.chat.view;
 
 import com.fernandojose.chat.controller.Controller;
+import com.fernandojose.chat.controller.repositories.GroupRepository;
+import com.fernandojose.chat.controller.services.MessageService;
 import com.fernandojose.chat.model.entities.Group;
-import com.fernandojose.chat.model.entities.Message;
 import com.fernandojose.chat.model.entities.User;
 
 import javax.swing.*;
@@ -25,30 +26,20 @@ public class MainView {
     private JList lChats;
     private JList lMensajes;
     private User user;
-    private Group grupoActual;
     private MainView self;
 
-    public MainView(User user) {
-        this.user = user;
-        System.out.println(user);
-        Controller.setCurrentUser(user.getName());
-        updateGroups();
-        self = this;
+    public MainView() {
 
-        bInput.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Controller.sendMessage(tfInput.getText());
-            }
-        });
+        Controller.updateUser();
+        this.user = Controller.getCurrentUser();
+        System.out.println(user);
+        updateGroups();
 
         //Cada vez que se selecciona un grupo, cambiamos el contenido de los mensajes vistos
         lChats.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
-                grupoActual = (Group)(lChats.getSelectedValue());
-                Controller.setCurrentGroup(grupoActual.getName());
-                lMensajes.setListData(new Vector(grupoActual.getMessages()));
+                updateMessages();
             }
         });
 
@@ -58,21 +49,24 @@ public class MainView {
             public void actionPerformed(ActionEvent e) {
                 if(!tfInput.getText().isEmpty()){
                     Controller.sendMessage(tfInput.getText());
-                    Controller.setCurrentGroup(grupoActual.getName());
+                    updateMessages();
+                    lMensajes.updateUI();
+                    tfInput.setText("");
                 }
             }
+
         });
         //Abre el panel de creación de grupo
         bCrearGrupo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                pGeneral.getParent().getParent().setVisible(false);
                 JFrame frame = new JFrame("Crear Grupo");
-                frame.setContentPane(new GroupCreation(self).getMainPanel());
+                frame.setContentPane(new GroupCreation().getMainPanel());
                 frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 frame.pack();
                 frame.setResizable(false);
                 frame.setVisible(true);
+                SwingUtilities.getWindowAncestor(pGeneral).dispose();
             }
         });
     }
@@ -82,6 +76,9 @@ public class MainView {
     }
 
     public void updateGroups() {
-        lChats.setListData(new Vector<Group>(user.getGroups()));
+        lChats.setListData(Controller.groupsByUser(Controller.getCurrentUser()));
+    }
+    public void updateMessages(){
+        lMensajes.setListData(Controller.messagesGroupUser(((Group)(lChats.getSelectedValue())).getId()));
     }
 }

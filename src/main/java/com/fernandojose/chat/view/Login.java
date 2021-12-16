@@ -22,8 +22,9 @@ public class Login {
             public void actionPerformed(ActionEvent e) {
                 try{
                     User user = Controller.validateLogin(tfUsername.getText(), pfPass.getText());
+                    Controller.setCurrentUser(user.getName());
                     JFrame frame = new JFrame("CRYCAST 0.1");
-                    frame.setContentPane(new MainView(user).getMainPanel());
+                    frame.setContentPane(new MainView().getMainPanel());
                     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                     frame.pack();
                     frame.setResizable(false);
