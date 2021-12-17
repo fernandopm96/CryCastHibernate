@@ -13,6 +13,7 @@ import java.util.Vector;
 
 import static com.fernandojose.chat.utils.WindowUtils.centerWindow;
 
+/* Ventana de creación de grupos. */
 public class GroupCreation {
     private JPanel pGroupCreation;
     private JButton bCreateGroup;
@@ -24,6 +25,8 @@ public class GroupCreation {
     private JLabel lName;
     private JButton cancelarButton;
 
+    /* Se llama al controlador, el cual devuelve el nombre de todos los usuarios, para añadirlos al objeto JList.
+    Posteriormente, se asignan los eventos de los botones 'Crear grupo' y 'Cancelar'. */
     public GroupCreation() {
 
         lExistingUsers.setListData(new Vector(Controller.allNamesUsers()));

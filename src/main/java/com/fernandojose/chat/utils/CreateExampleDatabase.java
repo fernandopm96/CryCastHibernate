@@ -10,8 +10,11 @@ import com.fernandojose.chat.model.entities.User;
 import java.util.ArrayList;
 import java.util.List;
 
+/* Clase encargada de inicializar la base de datos con información a modo de prueba. Se registrarán usuarios, grupos
+y mensajes, a fin de disponer de datos en la primera ejecución. */
 public class CreateExampleDatabase {
 
+    // Atributos que contienene la información utilizada para llenar la BD.
     private static List<String> usersNames = List.of("Ricardo", "Fernando", "Jose" , "Blas", "Rubén", "Juan Elías", "Manu");
     private static List<String> messages = List.of("Buenas tardes", "Ieeeee", "Como vais", "Habéis terminado lo de Ricardo?", "Que va", "Hola buenas noches", ":)", ":(", "Jajajajja");
     private static List<String> groupsNames = List.of("2 DAM", "Acceso a datos", "CRYSEC");
@@ -22,7 +25,7 @@ public class CreateExampleDatabase {
         setGroups();
         setMessages();
     }
-
+    // Establece los usuarios
     private static void setUsers() {
         usersNames.forEach(name -> {
             try {
@@ -32,7 +35,7 @@ public class CreateExampleDatabase {
             }
         });
     }
-
+    // Establece los grupos
     private static void setGroups(){
         groupsNames.forEach(name -> {
             try{
@@ -47,7 +50,7 @@ public class CreateExampleDatabase {
             }
         });
     }
-
+    // Crea mensajes y los asigna a un usuario y grupo concreto.
     private static void setMessages(){
         for(int i = 0 ; i < 5; i++){
             Controller.setCurrentUser(usersNames.get(i + 1));

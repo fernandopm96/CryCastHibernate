@@ -11,6 +11,8 @@ import java.awt.event.WindowEvent;
 
 import static com.fernandojose.chat.utils.WindowUtils.centerWindow;
 
+/* Ventana de inicio de sesión. Es la primera ventana que aparece. Pide al usuario el nombre y la contraseña, y
+da la opción también de registrar un nuevo usuario, a través del botón 'Registro'. */
 public class Login {
     private JPanel jpLogin;
     private JPanel pUsername;
@@ -19,7 +21,9 @@ public class Login {
     private JButton loginButton;
     private JButton registerButton;
 
+    // Asignación de eventos para los botones 'Login' Y 'Register'.
     public Login() {
+
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

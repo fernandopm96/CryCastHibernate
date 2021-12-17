@@ -9,6 +9,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
 
+/* Clase que cumple el patrón Singleton en cuanto a la generación de SessionFactory como de Session, estableciendo una
+* instancia de ambas para la ejecución del programa.
+* Además, se establece la configuración del fichero 'hibernate.properties'.*/
 public class HibernateUtil {
 
     private static SessionFactory sessionFactory;

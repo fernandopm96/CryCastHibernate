@@ -4,6 +4,8 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/* Entidad que representa los grupos de la base de datos. La clave primaria de esta tabla es el id, y también
+* de un campo nombre el cuál la lógica del programa no deja que se repita para disferentes grupos.  */
 @Entity
 @Table(name = "grupos")
 public class Group {
@@ -16,10 +18,11 @@ public class Group {
     @Column(name = "nombre")
     private String name;
 
+    // Relación 1 a muchos con mensajes. Un grupo puede contener varios mensajes. Un mensaje se manda en un grupo.
     @OneToMany(mappedBy = "group")
     private List<Message> messages = new ArrayList<Message>();
 
-
+    // Relación muchos a muchos con grupos. Un usuario puede estar en varios grupos y un grupo contiene varios usuarios.
     @JoinTable(
             name = "grupos_usuarios",
             joinColumns = @JoinColumn(name = "id_grupo"),

@@ -2,6 +2,8 @@ package com.fernandojose.chat.model.entities;
 
 import javax.persistence.*;
 
+/* Entidad que representa a la tabla mensajes. Se identifica con un id, y contiene un atributo texto.
+Además, contiene claves ajenas de usuario y grupo. Un mensaje lo manda un único usuario en un único grupo. */
 @Entity
 @Table(name = "mensajes")
 public class Message {
@@ -14,10 +16,11 @@ public class Message {
     @Column(name = "texto")
     private String text;
 
+    // Relación muchos a uno con usuario. Un mensaje lo manda un usuario, que a su vez manda varios mensajes.
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_usuario", referencedColumnName = "id")
     private User user;
-
+    // Relación muchos a uno con grupo. Un mensaje se ubica en un grupo, que a su vez contiene varios mensajes.
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_grupo", referencedColumnName = "id")
     private Group group;

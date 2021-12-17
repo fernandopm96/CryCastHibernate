@@ -9,7 +9,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import static com.fernandojose.chat.utils.WindowUtils.centerWindow;
-
+/* Ventana de registro. Tres campos de texto en los que el usuario debe introducir el nombre y la contraseña que
+quiere establecer por duplicado. Dispone de dos botones, Registrar y Cancelar. */
 public class RegisterForm {
     private JPanel pRegisterForm;
     private JPanel pForm;
@@ -22,6 +23,7 @@ public class RegisterForm {
     private JTextField tfName;
     private JButton cancelarButton;
 
+    // Asignación de eventos para los botones Registrar y Cancelar.
     public RegisterForm() {
         cancelarButton.addActionListener(new ActionListener() {
             @Override
